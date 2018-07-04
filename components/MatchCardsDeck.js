@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Text,
+  TextInput,
   Animated,
   PanResponder,
   Dimensions,
@@ -12,7 +13,7 @@ import {
   LayoutAnimation
 } from "react-native";
 import { Button, Card } from "react-native-elements";
-import MatchCard from "./Feed_MatchCard_Tinder";
+import MatchCard from "./MatchCard";
 import {
   primaryBrandColor,
   primaryColorLight,
@@ -120,15 +121,13 @@ class MatchCardsDeck extends Component {
 
   renderNoMoreMatchesInfo() {
     return (
-      <Card styles={styles.card} title="No more Games!">
-        <Text style={{ marginBottom: 10 }}>
-          There are currently no more games in your area.
-        </Text>
+      <View>
+        <TextInput />
         <Button
           backgroundColor={secondaryBrandColor}
-          title="Increase Search Radius"
+          title="Send your result"
         />
-      </Card>
+      </View>
     );
   }
 
@@ -166,7 +165,7 @@ class MatchCardsDeck extends Component {
               { top: 2 * (thatcardsIndex - this.state.index) }
             ]}
           >
-            <MatchCard card={card} />
+            <MatchCard card={card} forceSwipe={this.forceSwipe} />
           </Animated.View>
         );
       })
@@ -180,17 +179,30 @@ class MatchCardsDeck extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: white,
-    position: "relative",
-    marginTop: SCREEN_HEIGHT * 0.1
+    alignItems: "center",
+    justifyContent: "center"
   },
   card: {
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: white,
-    width: SCREEN_WIDTH,
-    padding: 10
+    backgroundColor: secondaryBrandColor,
+    width: SCREEN_WIDTH * 0.96,
+    height: SCREEN_HEIGHT * 0.7,
+    padding: 10,
+    marginTop: SCREEN_HEIGHT * 0.05,
+    marginBottom: SCREEN_HEIGHT * 0.1,
+    marginLeft: SCREEN_WIDTH * 0.02
+  },
+  finalCard: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: secondaryBrandColor,
+    marginLeft: SCREEN_WIDTH * 0.04
+    // width: SCREEN_WIDTH * 0.96,
+    // height: SCREEN_HEIGHT * 0.7,
+    // padding: 10,
+    // marginBottom: SCREEN_HEIGHT * 0.1
   }
 });
 
